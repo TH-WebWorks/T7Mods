@@ -1,0 +1,17 @@
+--December 31, 2024--
+
+# Setting up Dog Rounds
+
+### These dogs are set up like The Giant, meaning that the first dog round will be somewhere between 5-7, and come in every 5 rounds after that, and after round 16 they'll slowly start spawning in with regular zombies.
+
+### Download the required dog spawners <dl>https://mega.nz/file/GDpyAB4b#trmU_tu2ZDuJ1xPGF9WiAx7rYwJDwJ0PcYOAa-bAkN0</dl>. Once done, open up the zip and drag and drop the folders into your root folder.
+
+# RADIANT
+
+### Open your map and go into the PREFAB BROWSWER. 
+
+### Search for "zm_boss_dog_actor_struct" and place it in your map. These are the dog actors.
+
+### Search for "zm_boss_dog_spawn_struct" and place it in your map. These are the dog spawner structs. Stamp this prefab (right click, PREFAB, STAMP PREFAB) and make the TARGETNAME of the struct the TARGET of your zone.
+
+## That's all, Happy Modding!

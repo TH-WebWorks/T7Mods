@@ -1,0 +1,35 @@
+--December 31, 2024--
+
+# Power Lag Fix
+
+### Open your mapname.gsc and find the following line:
+
+// #using scripts\zm\zm_usermap;
+
+### Paste the following underneath all of your usings:
+/*
+#precache( "triggerstring", "ZOMBIE_PERK_ADDITIONALPRIMARYWEAPON", "4000" );
+#precache( "triggerstring", "ZOMBIE_PERK_DEADSHOT", "1500" );
+#precache( "triggerstring", "ZOMBIE_PERK_DOUBLETAP", "2000" );
+#precache( "triggerstring", "ZOMBIE_PERK_FASTRELOAD", "3000" );
+#precache( "triggerstring", "ZOMBIE_PERK_JUGGERNAUT", "2500" );
+#precache( "triggerstring", "ZOMBIE_PERK_CHUGABUD", "2500" );
+#precache( "triggerstring", "ZOMBIE_PERK_DIVETONUKE", "2500" );
+#precache( "triggerstring", "ZOMBIE_PERK_MARATHON", "2000" );
+#precache( "triggerstring", "ZOMBIE_PERK_QUICKREVIVE", "1500" );
+#precache( "triggerstring", "ZOMBIE_PERK_QUICKREVIVE", "500" );
+#precache( "triggerstring", "ZOMBIE_PERK_PACKAPUNCH", "5000" );
+#precache( "triggerstring", "ZOMBIE_PERK_PACKAPUNCH", "1000" );
+#precache( "triggerstring", "ZOMBIE_PERK_PACKAPUNCH_AAT", "2500" );
+#precache( "triggerstring", "ZOMBIE_PERK_PACKAPUNCH_AAT", "500" );
+#precache( "triggerstring", "ZOMBIE_RANDOM_WEAPON_COST", "950" );
+#precache( "triggerstring", "ZOMBIE_RANDOM_WEAPON_COST", "10" );
+#precache( "triggerstring", "ZOMBIE_PERK_TOMBSTONE", "2000" );
+#precache( "triggerstring", "ZOMBIE_PERK_VULTURE", "3000" );
+#precache( "triggerstring", "ZOMBIE_PERK_WIDOWSWINE", "4000" );
+*/
+### If you have other perks in your map other than these listed here, just add them in yourself as it is very simple. You can use this as a template:
+
+// #precache( "triggerstring", "PERK_NAME", "PERK_COST" );
+
+## That's all, Happy Modding!

@@ -1,0 +1,27 @@
+--December 31, 2024--
+
+# How to install TheSkyeLord's Weapon Ports
+ 
+### First, download any of TheSkyeLord's weapon ports (you can find them on UGXMods or Devraw).
+
+### Next, extract all the folders from the zip file into your Black ops 3 root folder.
+
+### Then, open your maps zone file and add the following line:
+
+// include,type_your_zpkg_name_here
+
+### Now, open your map folder, and open the zone_source folder.
+
+### Inside that folder, you will make a new file named type_your_zpkg_name_here.zpkg
+
+### Now, you will return back to the zip file, and open [ADD TO .ZONE FILE.txt], open it, and copy the contents of the file.
+
+### Paste the contents into the new zpkg file you made.
+
+
+
+## That's all, Happy Modding!
+
+
+
+FINISH THIS LATER ONCE AT PC

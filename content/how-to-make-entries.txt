@@ -1,0 +1,32 @@
+Howdy, here are the instructions for making entries.
+
+Please reference existing entries for formatting.
+
+To make a new entry, please create a new file in the content folder.
+
+To have the entry show up in the sidebar, please add it to the index.txt file in the same folder as the entry and category
+again please reference existing entries for formatting.
+
+
+//////////////////////////////////////
+# = HEADER
+
+## = SUBHEADER
+
+### = SUBSUBHEADER or normal text
+
+// = CODE COMMENT
+
+/* = BLOCK COMMENT */
+
+Here's a download link:
+<dl>https://example.com/file.zip</dl>
+
+Here's a visit link:
+<visit>https://example.com</visit>
+
+And here's an image:
+![Description](path/to/image.jpg)
+//////////////////////////////////////
+
+^more features will be added in the future.

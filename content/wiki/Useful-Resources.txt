@@ -1,0 +1,28 @@
+--December 31, 2024--
+
+# Useful Resources
+### This page is a collection of useful resources for BO3 Modding.
+### If you have any suggestions for resources to add, please contact me on discord (xexdebino).
+
+## Tools
+/*
+Greyhound [COD Asset extraction tool] - <dl>https://github.com/Scobalula/Greyhound/releases</dl>
+*/
+## Assets
+/*
+Devraw [Asset sharing platform] - <visit>https://www.devraw.net/</visit>
+Modme [Asset sharing forun] - <visit>https://modme.co/</visit>
+*/
+## Community
+/*
+Offical ModTools discord - <visit>https://discord.gg/SQa2zefkXP</visit>
+Devraw discord - <visit>https://discord.com/invite/83mHWAakDc</visit>
+ZGC discord [Zombie Gaming Community] - <visit>https://discord.gg/RQyYacjhpD</visit>
+*/
+## Other wikis
+/*
+T7 Wiki - <visit>https://www.t7wiki.com/en/home</visit>
+Zeroy Wiki - <visit>https://wiki.zeroy.com/index.php?title=Main_Page</visit>
+*/
+
+## And lastly, Happy Modding!

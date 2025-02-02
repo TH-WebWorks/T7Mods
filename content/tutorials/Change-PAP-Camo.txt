@@ -1,0 +1,93 @@
+--December 31, 2024--
+
+# Change Pack a Punch Camo
+ 
+### Open your mapname.gsc and find the following line:
+
+// zm_usermap::main();
+
+### Anywhere underneath that, but still within function main(), insert the following line:
+
+// level.pack_a_punch_camo_index = 133;
+
+### You can change 133 to any of the available Pack a Punch Camos from the Weapon Camo Index.
+
+### The camo index can be found below:
+
+# Weapon Camo Index
+/*
+1 = Jungle tech
+2 = Ash
+3 = Flectarn
+4 = Heat Stroke
+5 = Snow Job
+6 = Dante
+7 = Integer
+8 = 6 speed
+9 = Policia
+10 = Ardent
+11 = Burnt
+12 = Bliss
+13 = Battle
+14 = Charmeleon
+15 = Gold
+16 = Diamond
+17 = Dark Matter
+18 = Artic
+19 = Jungle
+20 = Huntsman
+21 = Woodlums
+22 = Contagious
+23 = Fear
+24 = WMD
+25 = Red Hex
+26 = Afterlife (Shadow Of Evil)
+27 = Black Ops 3
+28 = Weaponized 115
+29 = Cyborg
+30 = True Vet
+31 = Snow Job
+32 = 6 speed
+33 = Takeout
+34 = digital (grey)
+35 = Nuketown
+36 = Transgression
+37 = Burnt
+38 = Storm
+39 = Wartorn
+40 = Prestige
+41 = digital (yellow/green)
+42 = The Giant camo
+43 = Ice
+44 = Dust
+45 = Tiger Stripes (orange)
+46 = Tiger Stripes
+47 = Contrast
+48 = Verde
+49 = Firebrand
+50 = Field
+75-80 = Der Eisendrache Camo -- [variants = 6]
+81 = Zetsubou No Shima Camo
+82 = Blood Camo
+83 = Heptic Camo
+84-88 = Gorod Krovi Camos -- [variants = 5]
+89-117 = Bo3 ChampionShip Camos -- [variants = 28]
+118 = Loading... (Orange scrolling text)
+119 = Wacky (Orange/Green slow scrolling)
+120 = Bo3 ChampionShip Camo
+121-125 = Revelation camos  -- [variants = 5]
+126 = Lucid Camo
+127 - 130 = No Camos ( use one of these if you want pap guns to not change camo)
+131 = St Patricks camo
+132 = Black Ops 1 Zombie Camo
+133 = Origins Camo
+134 = Cherry Fizz
+135 = Bubbles
+136 = Soviet Blue
+137 = Honeycomb
+138 = Watermelon
+*/
+
+
+## That's all, Happy Modding!
+

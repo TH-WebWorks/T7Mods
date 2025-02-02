@@ -1,0 +1,21 @@
+--December 31, 2024--
+
+# Change Starting Weapon
+
+### Open your mapname.gsc and find the following line:
+
+// zm_usermap::main();
+
+### Anywhere underneath that but still within function main(), insert these lines:
+/*
+level.start_weapon = GetWeapon( "pistol_standard" ); // CHANGE THIS FOR STARTING PISTOL
+level.default_laststandpistol = GetWeapon( "pistol_standard" );	// CHANGE THIS FOR LAST STAND PISTOL IN COOP
+level.default_solo_laststandpistol = GetWeapon( "pistol_standard_upgraded" ); // CHANGE THIS FOR LAST STAND PISTOL IN SOLO
+level.laststandpistol = level.default_laststandpistol;
+*/
+
+### You can now change these lines to your liking. I've included comments to make it easier to understand what each line does.
+
+
+## That's all, Happy Modding!
+

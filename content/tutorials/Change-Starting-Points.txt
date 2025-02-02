@@ -1,0 +1,16 @@
+--December 31, 2024--
+
+# Change starting points amount
+ 
+### Open your mapname.gsc and find the following line:
+
+// zm_usermap::main();
+
+### Anywhere underneath that, but still within function main(), insert the following line:
+
+// level.player_starting_points = 500000;
+
+### You can change 500000 to any amount of starting points you want the player to have.
+
+## That's all, Happy Modding!
+
