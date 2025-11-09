@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thread - T7Mods Forum</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav-profile-fixes.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="T7Mods Logo" class="logo-img">
+      T7Mods
+    </div>
+    <div class="nav-group">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/forum" class="active">Forum</a>
+      </div>
+      <div class="nav-auth nav-actions" id="navActions">
+        <button class="nav-btn login-btn" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content forum-content">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="/forum"><i class="fas fa-home"></i> Forum</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="#" id="categoryBreadcrumb">Category</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current" id="threadBreadcrumb">Loading...</span>
+    </div>
+
+    <!-- Thread Top Bar -->
+    <div class="thread-header" id="threadHeader">
+      <!-- Will be loaded dynamically -->
+    </div>
+
+    <!-- Forum Layout Container -->
+    <div class="forum-layout">
+      <!-- Left Sidebar - Thread Info -->
+      <aside class="forum-sidebar">
+        <div class="sidebar-section">
+          <h3><i class="fas fa-info-circle"></i> Thread Info</h3>
+          <div class="thread-info-stats" id="threadInfoStats">
+            <!-- Will be populated dynamically -->
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3><i class="fas fa-folder"></i> Category</h3>
+          <div class="category-nav" id="categoryNav">
+            <!-- Will be populated dynamically -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="forum-main">
+        <!-- Original Post -->
+        <div class="thread-post original-post" id="originalPost">
+          <!-- Will be loaded dynamically -->
+        </div>
+
+        <!-- Reply Form (for authenticated users) -->
+        <div class="reply-form-container" id="replyFormContainer" style="display: none;">
+          <h3><i class="fas fa-reply"></i> Reply to Thread</h3>
+          <form id="replyForm">
+            <div class="form-group">
+              <div class="editor-toolbar">
+                <button type="button" class="editor-btn" data-action="bold" title="Bold">
+                  <i class="fas fa-bold"></i>
+                </button>
+                <button type="button" class="editor-btn" data-action="italic" title="Italic">
+                  <i class="fas fa-italic"></i>
+                </button>
+                <button type="button" class="editor-btn" data-action="heading" title="Heading">
+                  <i class="fas fa-heading"></i>
+                </button>
+                <button type="button" class="editor-btn" data-action="code" title="Code">
+                  <i class="fas fa-code"></i>
+                </button>
+                <button type="button" class="editor-btn" data-action="link" title="Link">
+                  <i class="fas fa-link"></i>
+                </button>
+                <button type="button" class="editor-btn" data-action="image" title="Upload Image">
+                  <i class="fas fa-image"></i>
+                </button>
+                <input type="file" id="replyImageUpload" accept="image/*" style="display: none;">
+              </div>
+              <textarea id="replyContent" rows="8" required placeholder="Write your reply... (Markdown supported)"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="cta-button secondary" id="replyPreviewBtn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button type="submit" class="cta-button">
+                <i class="fas fa-paper-plane"></i> Post Reply
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Replies Section -->
+        <div class="replies-section">
+          <div class="replies-header">
+            <h3><i class="fas fa-comments"></i> Replies (<span id="replyCount">0</span>)</h3>
+            <div class="replies-sort">
+              <select id="sortReplies" class="sort-select">
+                <option value="oldest">Oldest First</option>
+                <option value="newest">Newest First</option>
+                <option value="most_liked">Most Liked</option>
+              </select>
+            </div>
+          </div>
+          <div class="replies-container" id="repliesContainer">
+            <!-- Replies will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be generated here -->
+        </div>
+      </main>
+
+      <!-- Right Sidebar - Related / Actions -->
+      <aside class="forum-sidebar-right">
+        <div class="sidebar-section">
+          <h3><i class="fas fa-user"></i> Author</h3>
+          <div class="thread-author-card" id="threadAuthorCard">
+            <!-- Will be populated dynamically -->
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3><i class="fas fa-cog"></i> Actions</h3>
+          <div class="thread-actions" id="threadActions">
+            <button class="action-btn" id="subscribeBtn" style="display: none;">
+              <i class="fas fa-bell"></i> Subscribe
+            </button>
+            <button class="action-btn" id="markSolvedBtn" style="display: none;">
+              <i class="fas fa-check"></i> Mark Solved
+            </button>
+            <button class="action-btn" id="pinThreadBtn" style="display: none;">
+              <i class="fas fa-thumbtack"></i> Pin Thread
+            </button>
+            <button class="action-btn" id="editThreadBtn" style="display: none;">
+              <i class="fas fa-edit"></i> Edit Thread
+            </button>
+            <button class="action-btn danger" id="deleteThreadBtn" style="display: none;">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Edit Thread Modal -->
+  <div class="modal" id="editThreadModal">
+    <div class="modal-content modal-large">
+      <span class="modal-close" id="editThreadModalClose">&times;</span>
+      <h2><i class="fas fa-edit"></i> Edit Thread</h2>
+      
+      <form id="editThreadForm">
+        <div class="form-group">
+          <label for="editThreadTitle">Thread Title</label>
+          <input type="text" id="editThreadTitle" required maxlength="200">
+        </div>
+
+        <div class="form-group">
+          <label for="editThreadContent">Content</label>
+          <textarea id="editThreadContent" rows="15" required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cta-button secondary" id="cancelEditThread">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button type="submit" class="cta-button">
+            <i class="fas fa-save"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Reply Modal -->
+  <div class="modal" id="editReplyModal">
+    <div class="modal-content modal-large">
+      <span class="modal-close" id="editReplyModalClose">&times;</span>
+      <h2><i class="fas fa-edit"></i> Edit Reply</h2>
+      
+      <form id="editReplyForm">
+        <input type="hidden" id="editReplyId">
+        
+        <div class="form-group">
+          <label for="editReplyContent">Content</label>
+          <textarea id="editReplyContent" rows="12" required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cta-button secondary" id="cancelEditReply">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button type="submit" class="cta-button">
+            <i class="fas fa-save"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div class="modal" id="previewModal">
+    <div class="modal-content modal-large">
+      <span class="modal-close">&times;</span>
+      <h2><i class="fas fa-eye"></i> Preview</h2>
+      <div class="preview-content markdown-content" id="previewContent">
+        <!-- Preview will be rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      
+      <div class="auth-form" id="loginForm">
+        <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+        <form id="loginFormElement">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
+          </div>
+          <button type="submit" class="cta-button">Login</button>
+          <p class="auth-switch">
+            Don't have an account? <a href="#" id="showSignup">Sign up</a>
+          </p>
+        </form>
+      </div>
+
+      <div class="auth-form" id="signupForm" style="display: none;">
+        <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
+        <form id="signupFormElement">
+          <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" required minlength="3">
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" required minlength="6">
+          </div>
+          <button type="submit" class="cta-button">Sign Up</button>
+          <p class="auth-switch">
+            Already have an account? <a href="#" id="showLogin">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 T7Mods | Created with ❤️ by The T7Mods Team</p>
+      <a href="https://discord.gg/twPys8Y6pZ" class="footer-discord" target="_blank">
+        <i class="fab fa-discord"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+  <script type="module" src="scripts/forum/config.js"></script>
+  <script type="module" src="scripts/forum/auth.js"></script>
+  <script type="module" src="scripts/forum/thread.js"></script>
+</body>
+</html>
+

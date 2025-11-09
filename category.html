@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category - T7Mods Forum</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav-profile-fixes.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="T7Mods Logo" class="logo-img">
+      T7Mods
+    </div>
+    <div class="nav-group">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/forum" class="active">Forum</a>
+      </div>
+      <div class="nav-auth nav-actions" id="navActions">
+        <button class="nav-btn login-btn" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content forum-content">
+    <!-- Breadcrumbs & Header -->
+    <div class="breadcrumbs">
+      <a href="/forum"><i class="fas fa-home"></i> Forum</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current" id="categoryBreadcrumb">Loading...</span>
+    </div>
+
+    <!-- Category Top Bar -->
+    <div class="forum-top-bar">
+      <div class="forum-title">
+        <h1><i class="fas fa-folder" id="categoryIcon"></i> <span id="categoryTitle">Loading...</span></h1>
+        <p id="categoryDescription"></p>
+      </div>
+      
+      <div class="forum-stats-inline">
+        <div class="stat-inline">
+          <span class="stat-value" id="categoryThreadCount">0</span>
+          <span class="stat-label">Threads</span>
+        </div>
+        <div class="stat-inline">
+          <span class="stat-value" id="categoryPostCount">0</span>
+          <span class="stat-label">Posts</span>
+        </div>
+      </div>
+
+      <div class="forum-actions">
+        <button class="cta-button" id="newThreadBtn" style="display: none;">
+          <i class="fas fa-plus"></i> New Thread
+        </button>
+      </div>
+    </div>
+
+    <!-- Forum Layout Container -->
+    <div class="forum-layout">
+      <!-- Left Sidebar -->
+      <aside class="forum-sidebar">
+        <!-- Quick Filters -->
+        <div class="sidebar-section">
+          <h3><i class="fas fa-filter"></i> Filters</h3>
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">
+              <i class="fas fa-list"></i> All
+            </button>
+            <button class="filter-btn" data-filter="open">
+              <i class="fas fa-circle"></i> Open
+            </button>
+            <button class="filter-btn" data-filter="solved">
+              <i class="fas fa-check-circle"></i> Solved
+            </button>
+            <button class="filter-btn" data-filter="pinned">
+              <i class="fas fa-thumbtack"></i> Pinned
+            </button>
+          </div>
+        </div>
+
+        <!-- Categories Quick Nav -->
+        <div class="sidebar-section">
+          <h3><i class="fas fa-folder"></i> Categories</h3>
+          <div class="category-nav" id="categoryNav">
+            <!-- Will be populated dynamically -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="forum-main">
+        <!-- Sort Options -->
+        <div class="forum-controls">
+          <div class="sort-options">
+            <label for="sortThreads">Sort by:</label>
+            <select id="sortThreads" class="sort-select">
+              <option value="latest">Latest Activity</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="most_replies">Most Replies</option>
+              <option value="most_views">Most Views</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Threads List -->
+        <div class="threads-container" id="threadsContainer">
+          <!-- Threads will be loaded here -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be generated here -->
+        </div>
+      </main>
+
+      <!-- Right Sidebar -->
+      <aside class="forum-sidebar-right">
+        <!-- Top Contributors -->
+        <div class="sidebar-section">
+          <h3><i class="fas fa-trophy"></i> Top Contributors</h3>
+          <div class="top-contributors" id="topContributors">
+            <!-- Will be populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Forum Rules -->
+        <div class="sidebar-section">
+          <h3><i class="fas fa-shield-alt"></i> Forum Rules</h3>
+          <ul class="rules-list">
+            <li>Be respectful to others</li>
+            <li>No spam or self-promotion</li>
+            <li>Search before posting</li>
+            <li>Use descriptive titles</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- New Thread Modal -->
+  <div class="modal" id="newThreadModal">
+    <div class="modal-content modal-large">
+      <span class="modal-close">&times;</span>
+      <h2><i class="fas fa-plus"></i> Create New Thread</h2>
+      
+      <form id="newThreadForm">
+        <div class="form-group">
+          <label for="threadTitle">Thread Title</label>
+          <input type="text" id="threadTitle" required maxlength="200" placeholder="Enter a descriptive title...">
+        </div>
+
+        <div class="form-group">
+          <label for="threadTags">Tags (Select up to 3)</label>
+          <div class="tags-selector" id="tagsSelector">
+            <!-- Tags will be loaded here -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="threadContent">Content</label>
+          <div class="editor-toolbar">
+            <button type="button" class="editor-btn" data-action="bold" title="Bold">
+              <i class="fas fa-bold"></i>
+            </button>
+            <button type="button" class="editor-btn" data-action="italic" title="Italic">
+              <i class="fas fa-italic"></i>
+            </button>
+            <button type="button" class="editor-btn" data-action="heading" title="Heading">
+              <i class="fas fa-heading"></i>
+            </button>
+            <button type="button" class="editor-btn" data-action="code" title="Code">
+              <i class="fas fa-code"></i>
+            </button>
+            <button type="button" class="editor-btn" data-action="link" title="Link">
+              <i class="fas fa-link"></i>
+            </button>
+            <button type="button" class="editor-btn" data-action="image" title="Upload Image">
+              <i class="fas fa-image"></i>
+            </button>
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+          </div>
+          <textarea id="threadContent" rows="15" required placeholder="Write your post... (Markdown supported)"></textarea>
+          <div class="editor-preview" id="editorPreview"></div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cta-button secondary" id="previewBtn">
+            <i class="fas fa-eye"></i> Preview
+          </button>
+          <button type="submit" class="cta-button">
+            <i class="fas fa-paper-plane"></i> Post Thread
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Modal (same as forum.html) -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      
+      <div class="auth-form" id="loginForm">
+        <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+        <form id="loginFormElement">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
+          </div>
+          <button type="submit" class="cta-button">Login</button>
+          <p class="auth-switch">
+            Don't have an account? <a href="#" id="showSignup">Sign up</a>
+          </p>
+        </form>
+      </div>
+
+      <div class="auth-form" id="signupForm" style="display: none;">
+        <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
+        <form id="signupFormElement">
+          <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" required minlength="3">
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" required minlength="6">
+          </div>
+          <button type="submit" class="cta-button">Sign Up</button>
+          <p class="auth-switch">
+            Already have an account? <a href="#" id="showLogin">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 T7Mods | Created with ❤️ by The T7Mods Team</p>
+      <a href="https://discord.gg/twPys8Y6pZ" class="footer-discord" target="_blank">
+        <i class="fab fa-discord"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script type="module" src="scripts/forum/config.js"></script>
+  <script type="module" src="scripts/forum/auth.js"></script>
+  <script type="module" src="scripts/forum/category.js"></script>
+</body>
+</html>
+

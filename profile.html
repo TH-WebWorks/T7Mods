@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - T7Mods</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav-profile-fixes.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="T7Mods Logo" class="logo-img">
+      T7Mods
+    </div>
+    <div class="nav-group">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/forum">Forum</a>
+      </div>
+      <div class="nav-auth nav-actions" id="navActions">
+        <button class="nav-btn login-btn" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content profile-page">
+    <div class="profile-layout">
+      <!-- Left Sidebar -->
+      <aside class="profile-sidebar">
+        <div class="profile-card">
+          <div class="profile-banner" id="profileBanner">
+            <button class="profile-banner-edit" id="changeBannerBtn" type="button">
+              <i class="fas fa-camera"></i>
+              Change Banner
+            </button>
+            <input type="file" id="bannerInput" accept="image/*" hidden>
+          </div>
+
+          <div class="profile-avatar-block">
+            <div class="profile-avatar-wrapper">
+              <img id="profileAvatar" src="/assets/default-avatar.png" alt="Avatar" class="profile-avatar-large">
+              <button class="profile-avatar-edit" id="changeAvatarBtn" type="button">
+                <i class="fas fa-camera"></i>
+              </button>
+              <input type="file" id="avatarInput" accept="image/*" hidden>
+            </div>
+          </div>
+
+          <div class="profile-basic-info">
+            <div class="profile-name-row">
+              <h1 id="profileUsername">Loading...</h1>
+              <span id="profileRole" class="role-badge">member</span>
+            </div>
+
+            <ul class="profile-meta-list">
+              <li><i class="fas fa-calendar"></i> Joined <span id="joinDate">--</span></li>
+              <li id="locationMeta" style="display: none;"><i class="fas fa-map-marker-alt"></i> <span id="location"></span></li>
+              <li id="websiteMeta" style="display: none;"><i class="fas fa-link"></i> <a id="website" href="#" target="_blank" rel="noopener"></a></li>
+            </ul>
+
+            <p id="profileBio" class="profile-bio">Loading bio...</p>
+
+            <div class="profile-social" id="profileSocial"></div>
+
+            <button class="cta-button full-width owner-only" id="openEditTabBtn" type="button">
+              <i class="fas fa-pen-to-square"></i>
+              Edit Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="profile-quick-stats">
+          <h2><i class="fas fa-bolt"></i> Quick Stats</h2>
+          <div class="profile-stat-list">
+            <div class="profile-stat-item">
+              <span class="label">Threads</span>
+              <span class="value" id="threadsCount">0</span>
+            </div>
+            <div class="profile-stat-item">
+              <span class="label">Posts</span>
+              <span class="value" id="postCount">0</span>
+            </div>
+            <div class="profile-stat-item">
+              <span class="label">Solutions</span>
+              <span class="value" id="solutionsCount">0</span>
+            </div>
+            <div class="profile-stat-item">
+              <span class="label">Reputation</span>
+              <span class="value" id="reputation">0</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <section class="profile-main">
+        <div class="profile-tabs" id="profileTabs">
+          <button class="profile-tab active" data-tab="threads">
+            <i class="fas fa-comments"></i> Threads
+          </button>
+          <button class="profile-tab" data-tab="posts">
+            <i class="fas fa-comment"></i> Posts
+          </button>
+          <button class="profile-tab" data-tab="about">
+            <i class="fas fa-user"></i> About
+          </button>
+          <button class="profile-tab profile-tab-hidden" data-tab="edit" id="editTabBtn">
+            <i class="fas fa-sliders-h"></i> Edit Profile
+          </button>
+        </div>
+
+        <div class="profile-tab-content active" id="threadsTab">
+          <div id="userThreads" class="profile-activity-list">
+            <p class="loading-message">Loading threads...</p>
+          </div>
+        </div>
+
+        <div class="profile-tab-content" id="postsTab">
+          <div id="userPosts" class="profile-activity-list">
+            <p class="loading-message">Loading posts...</p>
+          </div>
+        </div>
+
+        <div class="profile-tab-content" id="aboutTab">
+          <div class="profile-about-card">
+            <h2><i class="fas fa-circle-info"></i> About</h2>
+            <div id="aboutContent">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-tab-content" id="editTab">
+          <div class="profile-edit-grid">
+            <form id="profileInfoForm" class="profile-edit-card">
+              <h2><i class="fas fa-id-card"></i> Profile Info</h2>
+              <div class="form-group">
+                <label for="editBio">Bio <span id="editBioCount">0/500</span></label>
+                <textarea id="editBio" maxlength="500" rows="4" placeholder="Tell the community about yourself..."></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="editLocation">Location</label>
+                  <input type="text" id="editLocation" placeholder="Where you're based">
+                </div>
+                <div class="form-group">
+                  <label for="editWebsite">Website</label>
+                  <input type="url" id="editWebsite" placeholder="https://example.com">
+                </div>
+              </div>
+              <button class="cta-button" type="submit">Save Profile Info</button>
+            </form>
+
+            <form id="profileSocialForm" class="profile-edit-card">
+              <h2><i class="fas fa-hashtag"></i> Social Links</h2>
+              <div class="form-group">
+                <label for="editDiscord">Discord</label>
+                <input type="text" id="editDiscord" placeholder="username#1234">
+              </div>
+              <div class="form-group">
+                <label for="editTwitter">Twitter / X</label>
+                <input type="text" id="editTwitter" placeholder="@handle">
+              </div>
+              <div class="form-group">
+                <label for="editYoutube">YouTube</label>
+                <input type="url" id="editYoutube" placeholder="https://youtube.com/...">
+              </div>
+              <div class="form-group">
+                <label for="editGithub">GitHub</label>
+                <input type="text" id="editGithub" placeholder="github-username">
+              </div>
+              <button class="cta-button" type="submit">Save Social Links</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Sidebar -->
+      <aside class="profile-sidebar-right">
+        <div class="profile-side-card">
+          <h2><i class="fas fa-trophy"></i> Highlights</h2>
+          <ul class="profile-highlight-list" id="profileHighlights">
+            <li>No highlights yet.</li>
+          </ul>
+        </div>
+
+        <div class="profile-side-card" id="recentActivityCard">
+          <h2><i class="fas fa-clock"></i> Recent Activity</h2>
+          <div id="recentActivity" class="profile-activity-list compact">
+            <p class="loading-message">Loading...</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script type="module" src="scripts/forum/config.js"></script>
+  <script type="module" src="scripts/forum/auth.js"></script>
+  <script type="module" src="scripts/profile.js"></script>
+</body>
+</html>

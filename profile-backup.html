@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - T7Mods</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav-profile-fixes.css">
+  <link rel="stylesheet" href="profile-complete.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <a href="/" class="logo">T7<span>Mods</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/mods.html">Mods</a>
+        <a href="/forum.html" class="active">Forum</a>
+        <a href="/guides.html">Guides</a>
+      </div>
+      <div class="nav-actions" id="navActions">
+        <button class="cta-button" id="loginBtn">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="forum-content">
+    <div class="profile-container">
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="profile-banner" id="profileBanner"></div>
+        <div class="profile-info">
+          <img id="profileAvatar" src="/assets/default-avatar.png" alt="Avatar" class="profile-avatar-large">
+          <div class="profile-details">
+            <div class="profile-name-section">
+              <h1 id="profileUsername">Loading...</h1>
+              <span id="profileRole" class="user-role"></span>
+            </div>
+            <div class="profile-meta">
+              <span><i class="fas fa-calendar"></i> Joined <span id="joinDate"></span></span>
+              <span id="locationMeta" style="display: none;"><i class="fas fa-map-marker-alt"></i> <span id="location"></span></span>
+              <span id="websiteMeta" style="display: none;"><i class="fas fa-link"></i> <a id="website" target="_blank"></a></span>
+            </div>
+            <p id="profileBio" class="profile-bio"></p>
+            <div class="profile-social" id="profileSocial"></div>
+          </div>
+          <div class="profile-actions">
+            <button class="cta-button secondary" id="editProfileBtn" style="display: none;">
+              <i class="fas fa-edit"></i> Edit Profile
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Stats -->
+      <div class="profile-stats-section">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-comment"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="postCount">0</div>
+            <div class="stat-label">Posts</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="reputation">0</div>
+            <div class="stat-label">Reputation</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="threadsCount">0</div>
+            <div class="stat-label">Threads</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="solutionsCount">0</div>
+            <div class="stat-label">Solutions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="profile-tabs">
+        <button class="tab-btn active" data-tab="threads">
+          <i class="fas fa-comments"></i> Threads
+        </button>
+        <button class="tab-btn" data-tab="posts">
+          <i class="fas fa-comment"></i> Posts
+        </button>
+        <button class="tab-btn" data-tab="about">
+          <i class="fas fa-info-circle"></i> About
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content active" id="threadsTab">
+        <div id="userThreads" class="activity-list">
+          <p class="loading">Loading threads...</p>
+        </div>
+      </div>
+
+      <div class="tab-content" id="postsTab">
+        <div id="userPosts" class="activity-list">
+          <p class="loading">Loading posts...</p>
+        </div>
+      </div>
+
+      <div class="tab-content" id="aboutTab">
+        <div class="about-section">
+          <h2>About</h2>
+          <div id="aboutContent">
+            <p class="loading">Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>T7Mods</h3>
+        <p>Your ultimate source for Call of Duty: Black Ops III mods</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="/mods.html">Browse Mods</a>
+        <a href="/forum.html">Community Forum</a>
+        <a href="/guides.html">Guides</a>
+      </div>
+      <div class="footer-section">
+        <h3>Community</h3>
+        <a href="https://discord.gg/t7mods" target="_blank">Discord</a>
+        <a href="https://twitter.com/t7mods" target="_blank">Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 T7Mods. All rights reserved.</p>
+      <a href="https://discord.gg/t7mods" target="_blank">
+        <i class="fab fa-discord"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/forum/config.js"></script>
+  <script type="module" src="scripts/forum/auth.js"></script>
+  <script type="module" src="scripts/profile.js"></script>
+</body>
+</html>
+
