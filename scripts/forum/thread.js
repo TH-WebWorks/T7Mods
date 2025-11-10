@@ -59,6 +59,14 @@ async function loadThread(threadId) {
   categoryBreadcrumb.textContent = thread.categories.name;
   categoryBreadcrumb.href = `/category.html?slug=${thread.categories.slug}`;
   document.getElementById('threadBreadcrumb').textContent = thread.title;
+  const categoryQuickLink = document.getElementById('threadCategoryLink');
+  if (categoryQuickLink) {
+    categoryQuickLink.href = `/category.html?slug=${thread.categories.slug}`;
+    const label = categoryQuickLink.querySelector('span');
+    if (label) {
+      label.textContent = `View ${thread.categories.name}`;
+    }
+  }
 
   // Update page title
   document.title = `${thread.title} - T7Mods Forum`;

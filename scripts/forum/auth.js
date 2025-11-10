@@ -4,6 +4,15 @@ import { getSupabase } from './config.js';
 let currentUser = null;
 let currentProfile = null;
 
+function emitAuthChange() {
+  window.dispatchEvent(new CustomEvent('profile-auth-changed', {
+    detail: {
+      user: currentUser,
+      profile: currentProfile,
+    },
+  }));
+}
+
 // Initialize auth
 export async function initAuth() {
   const supabase = await getSupabase();
@@ -24,12 +33,14 @@ export async function initAuth() {
       currentUser = null;
       currentProfile = null;
       updateAuthUI();
+      emitAuthChange();
     }
   });
 
   // Update UI based on auth state
   updateAuthUI();
   setupAuthHandlers();
+  emitAuthChange();
 }
 
 // Load user profile from database
@@ -49,6 +60,7 @@ async function loadUserProfile(user) {
   }
 
   currentProfile = data;
+  emitAuthChange();
 }
 
 // Update UI based on auth state

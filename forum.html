@@ -17,21 +17,29 @@
       T7Mods
     </div>
     <div class="nav-group">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/forum" class="active">Forum</a>
-      </div>
-      <div class="nav-auth nav-actions" id="navActions">
-        <button class="nav-btn login-btn" id="loginBtn">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/forum" class="active">Forum</a>
+          <a href="/members">Members</a>
+        </div>
+        <div class="nav-auth nav-actions" id="navActions">
+          <button class="nav-btn login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </div>
       </div>
     </div>
   </nav>
 
   <div class="main-content forum-content">
     <!-- Forum Top Bar -->
-    <div class="forum-top-bar">
+    <div class="forum-top-bar surface-card surface-card--accent">
       <div class="forum-title">
         <h1><i class="fas fa-comments"></i> Forum</h1>
         <p>Black Ops 3 Modding Discussion</p>
@@ -50,6 +58,15 @@
           <span class="stat-value" id="totalUsers">0</span>
           <span class="stat-label">Members</span>
         </div>
+      </div>
+
+      <div class="forum-quick-links">
+        <a class="quick-action" href="#categoriesContainer">
+          <i class="fas fa-list-ul"></i> <span>Browse Categories</span>
+        </a>
+        <a class="quick-action" href="/members">
+          <i class="fas fa-users"></i> <span>Browse Members</span>
+        </a>
       </div>
 
       <div class="forum-actions">
@@ -232,6 +249,7 @@
     </div>
   </footer>
 
+  <script type="module" src="scripts/nav.js"></script>
   <script type="module" src="scripts/forum/config.js"></script>
   <script type="module" src="scripts/forum/auth.js"></script>
   <script type="module" src="scripts/forum/forum.js"></script>

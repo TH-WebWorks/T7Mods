@@ -5,6 +5,10 @@ let profileUser = null;
 let currentUser = null;
 let viewingUserId = null;
 
+function isProfileOwner() {
+  return Boolean(currentUser?.id && profileUser?.id && currentUser.id === profileUser.id);
+}
+
 const DOM = {
   profileUsername: () => document.getElementById('profileUsername'),
   profileRole: () => document.getElementById('profileRole'),
@@ -64,6 +68,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadProfile(viewingUserId);
 });
 
+window.addEventListener('profile-auth-changed', (event) => {
+  currentUser = event.detail?.profile || null;
+  updateOwnerEditingState();
+});
+
 async function loadProfile(userId) {
   const supabase = await getSupabase();
 
@@ -90,15 +99,13 @@ async function loadProfile(userId) {
   renderProfile(profile);
   populateEditForms(profile);
 
-  if (currentUser && currentUser.id === viewingUserId) {
-    enableOwnerEditing();
-  }
+  updateOwnerEditingState();
 
   await loadUserActivity(userId);
 }
 
 function renderProfile(profile) {
-  document.getElementById('profileAvatar').src = profile.avatar_url || '/assets/default-avatar.png';
+  document.getElementById('profileAvatar').src = profile.avatar_url || '/assets/images/@default_profile.jpg';
   const banner = document.getElementById('profileBanner');
   banner.style.backgroundImage = profile.banner_url ? `url(${profile.banner_url})` : '';
 
@@ -422,6 +429,10 @@ function setupEditControls() {
 function enableOwnerEditing() {
   const editTabBtn = DOM.editTabBtn();
   const openEditBtn = DOM.openEditTabBtn();
+  const bannerEdit = DOM.changeBannerBtn();
+  const avatarEdit = DOM.changeAvatarBtn();
+  const bannerInput = DOM.bannerInput();
+  const avatarInput = DOM.avatarInput();
 
   if (editTabBtn) {
     editTabBtn.classList.remove('profile-tab-hidden');
@@ -431,11 +442,86 @@ function enableOwnerEditing() {
     openEditBtn.style.display = 'inline-flex';
   }
 
+  if (bannerEdit) {
+    bannerEdit.style.display = 'inline-flex';
+    bannerEdit.removeAttribute('disabled');
+  }
+
+  if (avatarEdit) {
+    avatarEdit.style.display = 'inline-flex';
+    avatarEdit.removeAttribute('disabled');
+  }
+
+  if (bannerInput) {
+    bannerInput.removeAttribute('disabled');
+  }
+
+  if (avatarInput) {
+    avatarInput.removeAttribute('disabled');
+  }
+}
+
+function disableOwnerEditing() {
+  const editTabBtn = DOM.editTabBtn();
+  const openEditBtn = DOM.openEditTabBtn();
   const bannerEdit = DOM.changeBannerBtn();
   const avatarEdit = DOM.changeAvatarBtn();
+  const bannerInput = DOM.bannerInput();
+  const avatarInput = DOM.avatarInput();
 
-  if (bannerEdit) bannerEdit.style.display = 'inline-flex';
-  if (avatarEdit) avatarEdit.style.display = 'inline-flex';
+  if (editTabBtn) {
+    editTabBtn.classList.add('profile-tab-hidden');
+  }
+
+  if (openEditBtn) {
+    openEditBtn.style.display = 'none';
+  }
+
+  if (bannerEdit) {
+    bannerEdit.style.display = 'none';
+    bannerEdit.setAttribute('disabled', 'disabled');
+  }
+
+  if (avatarEdit) {
+    avatarEdit.style.display = 'none';
+    avatarEdit.setAttribute('disabled', 'disabled');
+  }
+
+  if (bannerInput) {
+    bannerInput.value = '';
+    bannerInput.setAttribute('disabled', 'disabled');
+  }
+
+  if (avatarInput) {
+    avatarInput.value = '';
+    avatarInput.setAttribute('disabled', 'disabled');
+  }
+}
+
+function updateOwnerEditingState() {
+  const profilePage = document.querySelector('.profile-page');
+  const isOwner = isProfileOwner();
+
+  if (profilePage) {
+    profilePage.classList.toggle('profile-owner', isOwner);
+  }
+
+  if (isOwner) {
+    const bannerEdit = DOM.changeBannerBtn();
+    const avatarEdit = DOM.changeAvatarBtn();
+
+    if (bannerEdit) {
+      bannerEdit.removeAttribute('disabled');
+    }
+
+    if (avatarEdit) {
+      avatarEdit.removeAttribute('disabled');
+    }
+
+    enableOwnerEditing();
+  } else {
+    disableOwnerEditing();
+  }
 }
 
 function switchToTab(tabName) {
@@ -458,6 +544,10 @@ function switchToTab(tabName) {
 async function handleProfileInfoSubmit(event) {
   event.preventDefault();
   if (!isAuthenticated() || !profileUser) return;
+  if (!isProfileOwner()) {
+    alert('You can only edit your own profile.');
+    return;
+  }
 
   const bio = DOM.editBio().value.trim();
   const location = DOM.editLocation().value.trim();
@@ -486,6 +576,10 @@ async function handleProfileInfoSubmit(event) {
 async function handleSocialLinksSubmit(event) {
   event.preventDefault();
   if (!isAuthenticated() || !profileUser) return;
+  if (!isProfileOwner()) {
+    alert('You can only edit your own profile.');
+    return;
+  }
 
   const discord = DOM.editDiscord().value.trim();
   const twitter = DOM.editTwitter().value.trim();
@@ -515,6 +609,11 @@ async function handleSocialLinksSubmit(event) {
 async function handleAvatarUpload(event) {
   const file = event.target.files?.[0];
   if (!file || !isAuthenticated()) return;
+  if (!isProfileOwner()) {
+    alert('You can only update your own avatar.');
+    event.target.value = '';
+    return;
+  }
 
   if (!file.type.startsWith('image/')) {
     alert('Please upload an image file.');
@@ -561,6 +660,11 @@ async function handleAvatarUpload(event) {
 async function handleBannerUpload(event) {
   const file = event.target.files?.[0];
   if (!file || !isAuthenticated()) return;
+  if (!isProfileOwner()) {
+    alert('You can only update your own banner.');
+    event.target.value = '';
+    return;
+  }
 
   if (!file.type.startsWith('image/')) {
     alert('Please upload an image file.');

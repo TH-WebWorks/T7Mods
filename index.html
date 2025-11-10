@@ -15,9 +15,19 @@
       <img src="assets/images/logo.png" alt="T7Mods Logo" class="logo-img">
       T7Mods
     </div>
-    <div class="nav-links">
-      <a href="/" class="active">Home</a>
-      <a href="/forum">Forum</a>
+    <div class="nav-group">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/" class="active">Home</a>
+          <a href="/forum">Forum</a>
+          <a href="/members">Members</a>
+        </div>
+      </div>
     </div>
   </nav>
   
@@ -33,6 +43,44 @@
       </div>
     </div>
   </div>
+  
+  <main class="home-content">
+    <section>
+      <h2 class="section-heading">Choose Your Path</h2>
+      <p class="section-subtitle">Whether you’re publishing ports, solving bugs, or learning the basics, we've gathered the essentials in one place.</p>
+      <div class="portal-grid">
+        <article class="quick-link-card">
+          <h3><i class="fas fa-comments"></i> Dive into the Forum</h3>
+          <p>Browse categories, follow release threads, and get feedback from modders who have shipped projects before.</p>
+          <a class="cta-inline" href="/forum">
+            Visit Forum <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="quick-link-card">
+          <h3><i class="fas fa-users"></i> Meet the Community</h3>
+          <p>Filter by role, reputation, or activity to find collaborators and learn from the people powering T7Mods.</p>
+          <a class="cta-inline" href="/members">
+            View Members <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="quick-link-card">
+          <h3><i class="fas fa-graduation-cap"></i> Learn the Basics</h3>
+          <p>New to modding? Start with curated tutorials and documentation that walk through the fundamentals.</p>
+          <a class="cta-inline" href="/content/tutorials/index.txt" target="_blank" rel="noopener">
+            Open Tutorials <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+        <article class="quick-link-card">
+          <h3><i class="fas fa-shield-alt"></i> Lock in Your Profile</h3>
+          <p>Keep your reputation, socials, and bio up to date so others know how to reach and recognize your work.</p>
+          <a class="cta-inline" href="/profile-settings.html">
+            Update Profile <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
   <footer>
     <div class="footer-bottom">
       <p>© 2025 T7Mods | Created with ❤️ by The T7Mods Team</p>
@@ -41,6 +89,7 @@
       </a>
     </div>
   </footer>
+  <script type="module" src="scripts/nav.js"></script>
   <script src="scripts/hero.js"></script>
 </body>
 </html>

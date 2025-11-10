@@ -15,9 +15,19 @@
       <img src="assets/images/logo.png" alt="T7Mods Logo" class="logo-img">
       T7Mods
     </div>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/forum">Forum</a>
+    <div class="nav-group">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/forum">Forum</a>
+          <a href="/members">Members</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -38,6 +48,7 @@
       <div class="error-actions">
         <a href="/" class="error-button primary">HOME</a>
         <a href="/forum" class="error-button">FORUM</a>
+        <a href="/members" class="error-button">MEMBERS</a>
       </div>
     </div>
   </div>
@@ -50,5 +61,6 @@
       </a>
     </div>
   </footer>
+  <script type="module" src="scripts/nav.js"></script>
 </body>
-</html> 
+</html>

@@ -18,14 +18,22 @@
       T7Mods
     </div>
     <div class="nav-group">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/forum" class="active">Forum</a>
-      </div>
-      <div class="nav-auth nav-actions" id="navActions">
-        <button class="nav-btn login-btn" id="loginBtn">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/forum" class="active">Forum</a>
+          <a href="/members">Members</a>
+        </div>
+        <div class="nav-auth nav-actions" id="navActions">
+          <button class="nav-btn login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -40,8 +48,17 @@
       <span class="breadcrumb-current" id="threadBreadcrumb">Loading...</span>
     </div>
 
+    <div class="forum-quick-links surface-card surface-card--compact">
+      <a class="quick-action" id="threadCategoryLink" href="#">
+        <i class="fas fa-folder-open"></i> <span>View Category</span>
+      </a>
+      <a class="quick-action" href="/members">
+        <i class="fas fa-users"></i> <span>Browse Members</span>
+      </a>
+    </div>
+
     <!-- Thread Top Bar -->
-    <div class="thread-header" id="threadHeader">
+    <div class="thread-header surface-card surface-card--accent" id="threadHeader">
       <!-- Will be loaded dynamically -->
     </div>
 
@@ -288,6 +305,7 @@
     </div>
   </footer>
 
+  <script type="module" src="scripts/nav.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">

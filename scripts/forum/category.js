@@ -226,17 +226,20 @@ async function loadThreads() {
   // Render threads
   container.innerHTML = threads.map(thread => {
     const tags = thread.thread_tags?.map(tt => tt.tags).filter(Boolean) || [];
-    
+    const summary = getThreadSummary(thread);
+
     return `
       <div class="thread-item ${thread.is_pinned ? 'pinned' : ''}" data-thread-id="${thread.id}">
-        <div class="thread-status ${thread.status}">
-          ${getStatusIcon(thread.status)}
-          ${thread.is_pinned ? '<i class="fas fa-thumbtack pin-icon"></i>' : ''}
-        </div>
-        <div class="thread-content">
-          <div class="thread-title">
-            <a href="/thread.html?id=${thread.id}">${escapeHtml(thread.title)}</a>
+        <div class="thread-body">
+          <div class="thread-heading">
+            <span class="status-badge ${thread.status}">
+              ${getStatusIcon(thread.status)}
+              <span>${formatStatusLabel(thread.status)}</span>
+            </span>
+            <a href="/thread.html?id=${thread.id}" class="thread-title-link">${escapeHtml(thread.title)}</a>
+            ${thread.is_pinned ? '<span class="thread-pill"><i class="fas fa-thumbtack"></i> Pinned</span>' : ''}
           </div>
+          ${summary ? `<p class="thread-summary">${escapeHtml(truncateText(summary, 160))}</p>` : ''}
           ${tags.length > 0 ? `
             <div class="thread-tags">
               ${tags.map(tag => `
@@ -247,31 +250,21 @@ async function loadThreads() {
             </div>
           ` : ''}
           <div class="thread-meta">
-            <span class="thread-author">
-              <img src="${getAvatarUrl(thread.profiles.avatar_url, thread.profiles.username)}" 
-                   alt="${thread.profiles.username}" 
-                   class="avatar-small">
-              ${thread.profiles.username}
-              ${getRoleBadge(thread.profiles.role)}
-            </span>
-            <span class="thread-time">
-              <i class="fas fa-clock"></i>
-              ${formatTimeAgo(thread.created_at)}
-            </span>
+            <span><i class="fas fa-user"></i> ${escapeHtml(thread.profiles.username)}</span>
+            ${getRoleBadge(thread.profiles.role)}
+            <span><i class="fas fa-clock"></i> Started ${formatDateShort(thread.created_at)}</span>
+            <span><i class="fas fa-comment-dots"></i> Last reply ${formatTimeAgo(thread.last_reply_at || thread.last_activity || thread.updated_at || thread.created_at)}</span>
           </div>
         </div>
         <div class="thread-stats">
-          <div class="stat">
-            <span class="stat-value">${thread.view_count}</span>
-            <span class="stat-label">Views</span>
+          <div class="thread-stat">
+            <span class="value">${thread.view_count}</span>
+            <span class="label">Views</span>
           </div>
-          <div class="stat">
-            <span class="stat-value">${thread.reply_count}</span>
-            <span class="stat-label">Replies</span>
+          <div class="thread-stat">
+            <span class="value">${thread.reply_count}</span>
+            <span class="label">Replies</span>
           </div>
-        </div>
-        <div class="thread-action">
-          <i class="fas fa-arrow-right"></i>
         </div>
       </div>
     `;
@@ -609,6 +602,42 @@ function getStatusIcon(status) {
     'release': '<i class="fas fa-download"></i>',
   };
   return icons[status] || icons.open;
+}
+
+function formatStatusLabel(status) {
+  const labels = {
+    open: 'Open',
+    solved: 'Solved',
+    closed: 'Closed',
+    wip: 'In Progress',
+    release: 'Release',
+  };
+  return labels[status] || 'Open';
+}
+
+function truncateText(text, limit) {
+  if (!text) return '';
+  return text.length > limit ? `${text.slice(0, limit).trim()}…` : text;
+}
+
+function getThreadSummary(thread) {
+  if (thread.summary) return thread.summary;
+  if (!thread.content) return '';
+  const plain = thread.content
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/[\*\_\#\>\-]/g, ' ')
+    .replace(/\[(.*?)\]\([^)]*\)/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return plain;
+}
+
+function formatDateShort(timestamp) {
+  if (!timestamp) return '—';
+  const date = new Date(timestamp);
+  if (Number.isNaN(date.getTime())) return '—';
+  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 function getAvatarUrl(avatarUrl, username) {

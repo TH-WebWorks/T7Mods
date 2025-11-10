@@ -17,14 +17,22 @@
       T7Mods
     </div>
     <div class="nav-group">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/forum">Forum</a>
-      </div>
-      <div class="nav-auth nav-actions" id="navActions">
-        <button class="nav-btn login-btn" id="loginBtn">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/forum">Forum</a>
+          <a href="/members">Members</a>
+        </div>
+        <div class="nav-auth nav-actions" id="navActions">
+          <button class="nav-btn login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -44,7 +52,7 @@
 
           <div class="profile-avatar-block">
             <div class="profile-avatar-wrapper">
-              <img id="profileAvatar" src="/assets/default-avatar.png" alt="Avatar" class="profile-avatar-large">
+              <img id="profileAvatar" src="/assets/images/@default_profile.jpg" alt="Avatar" class="profile-avatar-large">
               <button class="profile-avatar-edit" id="changeAvatarBtn" type="button">
                 <i class="fas fa-camera"></i>
               </button>
@@ -200,6 +208,7 @@
     </div>
   </div>
 
+  <script type="module" src="scripts/nav.js"></script>
   <script type="module" src="scripts/forum/config.js"></script>
   <script type="module" src="scripts/forum/auth.js"></script>
   <script type="module" src="scripts/profile.js"></script>

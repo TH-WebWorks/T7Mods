@@ -17,14 +17,22 @@
       T7Mods
     </div>
     <div class="nav-group">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/forum" class="active">Forum</a>
-      </div>
-      <div class="nav-auth nav-actions" id="navActions">
-        <button class="nav-btn login-btn" id="loginBtn">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/forum" class="active">Forum</a>
+          <a href="/members">Members</a>
+        </div>
+        <div class="nav-auth nav-actions" id="navActions">
+          <button class="nav-btn login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -38,7 +46,7 @@
     </div>
 
     <!-- Category Top Bar -->
-    <div class="forum-top-bar">
+    <div class="forum-top-bar surface-card surface-card--accent">
       <div class="forum-title">
         <h1><i class="fas fa-folder" id="categoryIcon"></i> <span id="categoryTitle">Loading...</span></h1>
         <p id="categoryDescription"></p>
@@ -53,6 +61,15 @@
           <span class="stat-value" id="categoryPostCount">0</span>
           <span class="stat-label">Posts</span>
         </div>
+      </div>
+
+      <div class="forum-quick-links">
+        <a class="quick-action" href="#threadsContainer">
+          <i class="fas fa-stream"></i> <span>Latest Threads</span>
+        </a>
+        <a class="quick-action" href="/members">
+          <i class="fas fa-users"></i> <span>Find Members</span>
+        </a>
       </div>
 
       <div class="forum-actions">
@@ -260,6 +277,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script type="module" src="scripts/nav.js"></script>
   <script type="module" src="scripts/forum/config.js"></script>
   <script type="module" src="scripts/forum/auth.js"></script>
   <script type="module" src="scripts/forum/category.js"></script>

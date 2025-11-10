@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members - T7Mods</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav-profile-fixes.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="T7Mods Logo" class="logo-img">
+      T7Mods
+    </div>
+    <div class="nav-group">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/forum">Forum</a>
+          <a href="/members" class="active">Members</a>
+        </div>
+        <div class="nav-auth nav-actions" id="navActions">
+          <button class="nav-btn login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content members-page">
+    <header class="members-header">
+      <div class="members-title">
+        <h1><i class="fas fa-users"></i> Community Members</h1>
+        <p>Discover modders, creators, and collaborators in the T7Mods community.</p>
+      </div>
+      <a class="cta-button secondary" href="/profile-settings.html">
+        <i class="fas fa-pen-to-square"></i> Update Profile
+      </a>
+    </header>
+
+    <section class="members-controls surface-card surface-card--compact">
+      <div class="search-container members-search">
+        <input type="text" id="memberSearch" class="search-input" placeholder="Search members by username, bio, or location">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+      <div class="members-filters">
+        <label class="filter-select">
+          <span class="filter-label"><i class="fas fa-user-shield"></i> Role</span>
+          <select id="roleFilter">
+            <option value="all">All Roles</option>
+            <option value="admin">Admins</option>
+            <option value="moderator">Moderators</option>
+            <option value="verified_modder">Verified Modders</option>
+            <option value="member">Members</option>
+          </select>
+        </label>
+        <label class="filter-select">
+          <span class="filter-label"><i class="fas fa-sort"></i> Sort</span>
+          <select id="sortMembers">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="alphabetical">Alphabetical</option>
+            <option value="reputation">Top reputation</option>
+            <option value="posts">Most posts</option>
+            <option value="solutions">Most solutions</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="members-list surface-card" id="membersList" aria-live="polite" aria-busy="true">
+      <p class="loading-message">Loading members...</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 T7Mods | Created with ❤️ by The T7Mods Team</p>
+      <a href="https://discord.gg/twPys8Y6pZ" class="footer-discord" target="_blank" rel="noopener">
+        <i class="fab fa-discord"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/nav.js"></script>
+  <script type="module" src="scripts/forum/config.js"></script>
+  <script type="module" src="scripts/forum/auth.js"></script>
+  <script type="module" src="scripts/members.js"></script>
+</body>
+</html>
+

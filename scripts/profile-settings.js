@@ -381,7 +381,7 @@ async function searchUsers(query) {
   
   resultsContainer.innerHTML = users.map(user => `
     <div class="user-search-result" data-user-id="${user.id}">
-      <img src="${user.avatar_url || '/assets/default-avatar.png'}" alt="${user.username}">
+      <img src="${user.avatar_url || '/assets/images/@default_profile.jpg'}" alt="${user.username}">
       <div class="user-info">
         <strong>${user.username}</strong>
         <span class="user-role ${user.role}">${user.role}</span>
