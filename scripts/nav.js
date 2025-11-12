@@ -34,6 +34,22 @@ function setupNavigation(nav) {
   });
 }
 
+function setActiveLinks(navs) {
+  const currentPath = window.location.pathname.replace(/index\.html$/, '').replace(/\/$/, '') || '/';
+
+  navs.forEach((nav) => {
+    const links = nav.querySelectorAll('.nav-links a');
+    links.forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      const normalizedHref = href === '/' ? '/' : href.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+      const isActive = normalizedHref === '/'
+        ? currentPath === '/'
+        : currentPath.startsWith(normalizedHref);
+      link.classList.toggle('active', isActive);
+    });
+  });
+}
+
 function bindGlobalHandlers(navs) {
   document.addEventListener('click', (event) => {
     navs.forEach((nav) => {
@@ -69,5 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navs.forEach(setupNavigation);
   bindGlobalHandlers(navs);
+  setActiveLinks(navs);
 });
 

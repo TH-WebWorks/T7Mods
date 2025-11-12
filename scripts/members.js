@@ -209,6 +209,12 @@ function formatRoleLabel(role) {
       return 'Moderator';
     case 'verified_modder':
       return 'Verified Modder';
+    case 'creator':
+      return 'Creator';
+    case 'support':
+      return 'Support';
+    case 'partner':
+      return 'Partner';
     case 'member':
       return 'Member';
     case 'all':
@@ -217,4 +223,5 @@ function formatRoleLabel(role) {
       return role ? role.replace(/_/g, ' ') : 'Member';
   }
 }
+
 

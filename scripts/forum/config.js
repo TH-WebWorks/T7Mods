@@ -54,6 +54,9 @@ export const USER_ROLES = {
   ADMIN: 'admin',
   MODERATOR: 'moderator',
   VERIFIED_MODDER: 'verified_modder',
+  CREATOR: 'creator',
+  SUPPORT: 'support',
+  PARTNER: 'partner',
   MEMBER: 'member',
 };
 

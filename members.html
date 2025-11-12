@@ -26,7 +26,7 @@
         <div class="nav-links">
           <a href="/">Home</a>
           <a href="/forum">Forum</a>
-          <a href="/members" class="active">Members</a>
+          <a href="/members">Members</a>
         </div>
         <div class="nav-auth nav-actions" id="navActions">
           <button class="nav-btn login-btn" id="loginBtn">
@@ -39,49 +39,52 @@
 
   <main class="main-content members-page">
     <header class="members-header">
-      <div class="members-title">
-        <h1><i class="fas fa-users"></i> Community Members</h1>
-        <p>Discover modders, creators, and collaborators in the T7Mods community.</p>
-      </div>
-      <a class="cta-button secondary" href="/profile-settings.html">
-        <i class="fas fa-pen-to-square"></i> Update Profile
-      </a>
-    </header>
+        <div class="members-title">
+          <h1><i class="fas fa-users"></i> Community Members</h1>
+          <p>Discover modders, creators, and collaborators in the T7Mods community.</p>
+        </div>
+        <a class="cta-button secondary" href="/profile.html">
+          <i class="fas fa-pen-to-square"></i> Update Profile
+        </a>
+      </header>
 
-    <section class="members-controls surface-card surface-card--compact">
-      <div class="search-container members-search">
-        <input type="text" id="memberSearch" class="search-input" placeholder="Search members by username, bio, or location">
-        <i class="fas fa-search search-icon"></i>
-      </div>
-      <div class="members-filters">
-        <label class="filter-select">
-          <span class="filter-label"><i class="fas fa-user-shield"></i> Role</span>
-          <select id="roleFilter">
-            <option value="all">All Roles</option>
-            <option value="admin">Admins</option>
-            <option value="moderator">Moderators</option>
-            <option value="verified_modder">Verified Modders</option>
-            <option value="member">Members</option>
-          </select>
-        </label>
-        <label class="filter-select">
-          <span class="filter-label"><i class="fas fa-sort"></i> Sort</span>
-          <select id="sortMembers">
-            <option value="newest">Newest first</option>
-            <option value="oldest">Oldest first</option>
-            <option value="alphabetical">Alphabetical</option>
-            <option value="reputation">Top reputation</option>
-            <option value="posts">Most posts</option>
-            <option value="solutions">Most solutions</option>
-          </select>
-        </label>
-      </div>
-    </section>
+      <section class="members-controls surface-card surface-card--compact">
+        <div class="search-container members-search">
+          <input type="text" id="memberSearch" class="search-input" placeholder="Search members by username, bio, or location">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="members-filters">
+          <label class="filter-select">
+            <span class="filter-label"><i class="fas fa-user-shield"></i> Role</span>
+            <select id="roleFilter">
+              <option value="all">All Roles</option>
+              <option value="admin">Admins</option>
+              <option value="moderator">Moderators</option>
+              <option value="verified_modder">Verified Modders</option>
+              <option value="creator">Creators</option>
+              <option value="support">Support</option>
+              <option value="partner">Partners</option>
+              <option value="member">Members</option>
+            </select>
+          </label>
+          <label class="filter-select">
+            <span class="filter-label"><i class="fas fa-sort"></i> Sort</span>
+            <select id="sortMembers">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="reputation">Top reputation</option>
+              <option value="posts">Most posts</option>
+              <option value="solutions">Most solutions</option>
+            </select>
+          </label>
+        </div>
+      </section>
 
-    <section class="members-list surface-card" id="membersList" aria-live="polite" aria-busy="true">
-      <p class="loading-message">Loading members...</p>
-    </section>
-  </main>
+      <section class="members-list surface-card" id="membersList" aria-live="polite" aria-busy="true">
+        <p class="loading-message">Loading members...</p>
+      </section>
+    </main>
 
   <footer>
     <div class="footer-bottom">

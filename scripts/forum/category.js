@@ -650,6 +650,9 @@ function getRoleBadge(role) {
     'admin': '<span class="role-badge admin">Admin</span>',
     'moderator': '<span class="role-badge moderator">Mod</span>',
     'verified_modder': '<span class="role-badge verified">Verified</span>',
+    'creator': '<span class="role-badge creator">Creator</span>',
+    'support': '<span class="role-badge support">Support</span>',
+    'partner': '<span class="role-badge partner">Partner</span>',
   };
   return badges[role] || '';
 }
